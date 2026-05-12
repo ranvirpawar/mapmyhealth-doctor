@@ -26,23 +26,24 @@ export default function Sidebar() {
       width: sidebarCollapsed ? '68px' : '240px',
       minWidth: sidebarCollapsed ? '68px' : '240px',
       height: '100vh',
-      background: '#0D1B2A',
+      background: '#FFFFFF',
       display: 'flex',
       flexDirection: 'column',
       transition: 'width 0.25s cubic-bezier(0.4,0,0.2,1), min-width 0.25s cubic-bezier(0.4,0,0.2,1)',
       position: 'relative',
       overflow: 'hidden',
       flexShrink: 0,
+      borderRight: '1px solid var(--border)',
     }}>
       {/* Logo */}
-      <div style={{ padding: sidebarCollapsed ? '20px 16px' : '20px 20px', display: 'flex', alignItems: 'center', gap: 10, borderBottom: '1px solid rgba(255,255,255,0.06)', flexShrink: 0 }}>
+      <div style={{ padding: sidebarCollapsed ? '20px 16px' : '20px 20px', display: 'flex', alignItems: 'center', gap: 10, borderBottom: '1px solid var(--border)', flexShrink: 0 }}>
         <div style={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg, #0EA5E9, #14B8A6)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
           <Stethoscope size={17} color="white" />
         </div>
         {!sidebarCollapsed && (
           <div style={{ overflow: 'hidden' }}>
-            <div style={{ color: 'white', fontSize: 13, fontWeight: 600, lineHeight: 1.2, whiteSpace: 'nowrap' }}>Map My Health</div>
-            <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: 10, fontWeight: 400, whiteSpace: 'nowrap' }}>Doctor Portal</div>
+            <div style={{ color: 'var(--text-primary)', fontSize: 13, fontWeight: 600, lineHeight: 1.2, whiteSpace: 'nowrap' }}>Map My Health</div>
+            <div style={{ color: 'var(--text-muted)', fontSize: 10, fontWeight: 400, whiteSpace: 'nowrap' }}>Doctor Portal</div>
           </div>
         )}
       </div>
@@ -56,8 +57,8 @@ export default function Sidebar() {
             gap: 10,
             padding: sidebarCollapsed ? '10px 12px' : '9px 12px',
             borderRadius: 10,
-            color: isActive ? '#38BDF8' : 'rgba(255,255,255,0.6)',
-            background: isActive ? 'rgba(56,189,248,0.12)' : 'transparent',
+            color: isActive ? '#0EA5E9' : 'var(--text-secondary)',
+            background: isActive ? 'rgba(14,165,233,0.08)' : 'transparent',
             textDecoration: 'none',
             fontSize: 13,
             fontWeight: isActive ? 600 : 400,
@@ -66,8 +67,8 @@ export default function Sidebar() {
             justifyContent: sidebarCollapsed ? 'center' : 'flex-start',
             position: 'relative',
           })}
-            onMouseEnter={e => { if (!e.currentTarget.classList.contains('active')) { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = 'rgba(255,255,255,0.9)'; } }}
-            onMouseLeave={e => { if (!e.currentTarget.style.background?.includes('0.12')) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'rgba(255,255,255,0.6)'; } }}
+            onMouseEnter={e => { if (!e.currentTarget.classList.contains('active')) { e.currentTarget.style.background = 'var(--bg-page)'; e.currentTarget.style.color = 'var(--text-primary)'; } }}
+            onMouseLeave={e => { if (!e.currentTarget.style.background?.includes('0.08')) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--text-secondary)'; } }}
           >
             <div style={{ position: 'relative', flexShrink: 0 }}>
               <Icon size={17} />
@@ -82,17 +83,17 @@ export default function Sidebar() {
 
       {/* Doctor */}
       {!sidebarCollapsed && (
-        <div style={{ padding: '12px 14px', borderTop: '1px solid rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+        <div style={{ padding: '12px 14px', borderTop: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
           <div style={{ width: 34, height: 34, borderRadius: '50%', background: 'linear-gradient(135deg, #0EA5E9, #14B8A6)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: 'white', flexShrink: 0 }}>
             {doctor.initials}
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ color: 'rgba(255,255,255,0.9)', fontSize: 12, fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{doctor.name}</div>
-            <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: 10, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Internal Medicine</div>
+            <div style={{ color: 'var(--text-primary)', fontSize: 12, fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{doctor.name}</div>
+            <div style={{ color: 'var(--text-muted)', fontSize: 10, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Internal Medicine</div>
           </div>
-          <button onClick={() => { logout(); navigate('/'); }} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.3)', padding: 4, borderRadius: 6, transition: 'all 0.15s' }}
+          <button onClick={() => { logout(); navigate('/'); }} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)', padding: 4, borderRadius: 6, transition: 'all 0.15s' }}
             onMouseEnter={e => e.currentTarget.style.color = '#EF4444'}
-            onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.3)'}
+            onMouseLeave={e => e.currentTarget.style.color = 'var(--text-muted)'}
           >
             <LogOut size={14} />
           </button>
@@ -102,12 +103,12 @@ export default function Sidebar() {
       {/* Toggle */}
       <button onClick={toggleSidebar} style={{
         position: 'absolute', top: 22, right: -12, width: 24, height: 24,
-        background: '#1E3A5F', border: '1px solid rgba(255,255,255,0.1)',
+        background: '#FFFFFF', border: '1px solid var(--border)',
         borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
-        cursor: 'pointer', color: 'rgba(255,255,255,0.6)', zIndex: 10, transition: 'all 0.15s',
+        cursor: 'pointer', color: 'var(--text-secondary)', zIndex: 10, transition: 'all 0.15s', boxShadow: 'var(--shadow-sm)',
       }}
-        onMouseEnter={e => { e.currentTarget.style.background = '#0EA5E9'; e.currentTarget.style.color = 'white'; }}
-        onMouseLeave={e => { e.currentTarget.style.background = '#1E3A5F'; e.currentTarget.style.color = 'rgba(255,255,255,0.6)'; }}
+        onMouseEnter={e => { e.currentTarget.style.background = '#0EA5E9'; e.currentTarget.style.color = 'white'; e.currentTarget.style.borderColor = '#0EA5E9'; }}
+        onMouseLeave={e => { e.currentTarget.style.background = '#FFFFFF'; e.currentTarget.style.color = 'var(--text-secondary)'; e.currentTarget.style.borderColor = 'var(--border)'; }}
       >
         {sidebarCollapsed ? <ChevronRight size={12} /> : <ChevronLeft size={12} />}
       </button>
