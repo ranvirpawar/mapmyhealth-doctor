@@ -36,15 +36,42 @@ export default function Sidebar() {
       borderRight: '1px solid var(--border)',
     }}>
       {/* Logo */}
-      <div style={{ padding: sidebarCollapsed ? '20px 16px' : '20px 20px', display: 'flex', alignItems: 'center', gap: 10, borderBottom: '1px solid var(--border)', flexShrink: 0 }}>
-        <div style={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg, #0EA5E9, #14B8A6)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-          <Stethoscope size={17} color="white" />
-        </div>
-        {!sidebarCollapsed && (
-          <div style={{ overflow: 'hidden' }}>
-            <div style={{ color: 'var(--text-primary)', fontSize: 13, fontWeight: 600, lineHeight: 1.2, whiteSpace: 'nowrap' }}>Map My Health</div>
-            <div style={{ color: 'var(--text-muted)', fontSize: 10, fontWeight: 400, whiteSpace: 'nowrap' }}>Doctor Portal</div>
-          </div>
+      <div style={{ padding: sidebarCollapsed ? '20px 16px' : '20px 20px', display: 'flex', alignItems: 'center', gap: 10, borderBottom: '1px solid var(--border)', flexShrink: 0, justifyContent: sidebarCollapsed ? 'center' : 'flex-start' }}>
+        {sidebarCollapsed ? (
+          <button
+            onClick={toggleSidebar}
+            style={{
+              width: 36,
+              height: 36,
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, #0EA5E9, #14B8A6)',
+              border: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              fontSize: 12,
+              fontWeight: 700,
+              color: 'white',
+              flexShrink: 0,
+              transition: 'all 0.15s',
+            }}
+            onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
+            onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+            title="Expand sidebar"
+          >
+            {doctor.initials}
+          </button>
+        ) : (
+          <>
+            <div style={{ width: 32, height: 32, borderRadius: 10, background: 'linear-gradient(135deg, #0EA5E9, #14B8A6)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <Stethoscope size={17} color="white" />
+            </div>
+            <div style={{ overflow: 'hidden' }}>
+              <div style={{ color: 'var(--text-primary)', fontSize: 13, fontWeight: 600, lineHeight: 1.2, whiteSpace: 'nowrap' }}>Map My Health</div>
+              <div style={{ color: 'var(--text-muted)', fontSize: 10, fontWeight: 400, whiteSpace: 'nowrap' }}>Doctor Portal</div>
+            </div>
+          </>
         )}
       </div>
 
@@ -100,18 +127,20 @@ export default function Sidebar() {
         </div>
       )}
 
-      {/* Toggle */}
-      <button onClick={toggleSidebar} style={{
-        position: 'absolute', top: 22, right: -12, width: 24, height: 24,
-        background: '#FFFFFF', border: '1px solid var(--border)',
-        borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
-        cursor: 'pointer', color: 'var(--text-secondary)', zIndex: 10, transition: 'all 0.15s', boxShadow: 'var(--shadow-sm)',
-      }}
-        onMouseEnter={e => { e.currentTarget.style.background = '#0EA5E9'; e.currentTarget.style.color = 'white'; e.currentTarget.style.borderColor = '#0EA5E9'; }}
-        onMouseLeave={e => { e.currentTarget.style.background = '#FFFFFF'; e.currentTarget.style.color = 'var(--text-secondary)'; e.currentTarget.style.borderColor = 'var(--border)'; }}
-      >
-        {sidebarCollapsed ? <ChevronRight size={12} /> : <ChevronLeft size={12} />}
-      </button>
+      {/* Toggle - Only show when expanded */}
+      {!sidebarCollapsed && (
+        <button onClick={toggleSidebar} style={{
+          position: 'absolute', top: 22, right: -2, width: 24, height: 24,
+          background: '#FFFFFF', border: '1px solid var(--border)',
+          borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          cursor: 'pointer', color: 'var(--text-secondary)', zIndex: 10, transition: 'all 0.15s', boxShadow: 'var(--shadow-sm)',
+        }}
+          onMouseEnter={e => { e.currentTarget.style.background = '#0EA5E9'; e.currentTarget.style.color = 'white'; e.currentTarget.style.borderColor = '#0EA5E9'; }}
+          onMouseLeave={e => { e.currentTarget.style.background = '#FFFFFF'; e.currentTarget.style.color = 'var(--text-secondary)'; e.currentTarget.style.borderColor = 'var(--border)'; }}
+        >
+          <ChevronLeft size={12} />
+        </button>
+      )}
     </aside>
   );
 }
