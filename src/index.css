@@ -307,6 +307,23 @@ input, textarea, select, button { font-family: inherit; }
     flex: 1 1 calc(100% - 54px);
   }
 
+  .appointment-summary-row .appointment-meta {
+    order: 5;
+    flex: 1 1 100%;
+    justify-content: flex-start;
+    padding-left: 50px;
+  }
+
+  .appointment-summary-row .badge {
+    order: 3;
+    margin-left: 50px;
+  }
+
+  .appointment-summary-row .btn-primary {
+    order: 4;
+    margin-left: auto;
+  }
+
   .appointment-meta,
   .row-actions {
     flex: 1 1 auto;
@@ -428,6 +445,16 @@ input, textarea, select, button { font-family: inherit; }
   .row-actions .btn {
     flex: 1 1 auto;
     justify-content: center;
+  }
+
+  .appointment-summary-row .appointment-meta,
+  .appointment-summary-row .badge,
+  .appointment-summary-row .btn-primary {
+    margin-left: 0;
+  }
+
+  .appointment-summary-row .appointment-meta {
+    padding-left: 0;
   }
 
   .chart-grid .card {
