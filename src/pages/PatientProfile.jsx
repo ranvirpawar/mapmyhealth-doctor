@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { patients, generateBpHistory, generateSugarHistory, generateWeightHistory, consultationHistory } from '../data/mockData';
 import AppLayout from '../layouts/AppLayout';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
-import { Activity, Heart, Droplets, Thermometer, Pill, AlertTriangle, Calendar } from 'lucide-react';
+import { Activity, Heart, Droplets, Calendar } from 'lucide-react';
 
 export default function PatientProfile() {
   const { id } = useParams();
@@ -72,7 +72,7 @@ export default function PatientProfile() {
       </div>
 
       {/* Trend Charts */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px,1fr))', gap: 24, marginBottom: 24 }}>
+      <div className="chart-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px,1fr))', gap: 24, marginBottom: 24 }}>
         <div className="card" style={{ padding: 20 }}>
           <h3 style={{ fontSize: 14, fontWeight: 600, marginBottom: 16 }}>Blood Pressure Trend (Last 12 months)</h3>
           <ResponsiveContainer width="100%" height={200}>
@@ -113,7 +113,7 @@ export default function PatientProfile() {
       </div>
 
       {/* Conditions & Meds & Timeline */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+      <div className="two-column-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
         <div className="card" style={{ padding: 20 }}>
           <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 12 }}>Medical History</h3>
           <div style={{ marginBottom: 16 }}>

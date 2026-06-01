@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import AppLayout from '../layouts/AppLayout';
 import { reports as mockReports, patients } from '../data/mockData';
-import { Eye, FileText, AlertCircle } from 'lucide-react';
+import { Eye } from 'lucide-react';
 
 export default function Reports() {
   const [selected, setSelected] = useState(null);

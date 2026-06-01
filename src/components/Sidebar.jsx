@@ -2,8 +2,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useStore } from '../store/useStore';
 import {
   LayoutDashboard, CalendarDays, Users, FileText,
-  BarChart3, Bell, Settings, LogOut, Stethoscope,
-  ChevronLeft, ChevronRight, Pill
+  Bell, Settings, LogOut, Stethoscope,
+  ChevronLeft, Pill
 } from 'lucide-react';
 
 const nav = [
@@ -22,7 +22,7 @@ export default function Sidebar() {
   const unread = notifications.filter(n => !n.read).length;
 
   return (
-    <aside style={{
+    <aside className="sidebar" style={{
       width: sidebarCollapsed ? '68px' : '240px',
       minWidth: sidebarCollapsed ? '68px' : '240px',
       height: '100vh',
@@ -36,7 +36,7 @@ export default function Sidebar() {
       borderRight: '1px solid var(--border)',
     }}>
       {/* Logo */}
-      <div style={{ padding: sidebarCollapsed ? '20px 16px' : '20px 20px', display: 'flex', alignItems: 'center', gap: 10, borderBottom: '1px solid var(--border)', flexShrink: 0, justifyContent: sidebarCollapsed ? 'center' : 'flex-start' }}>
+      <div className="sidebar-brand" style={{ padding: sidebarCollapsed ? '20px 16px' : '20px 20px', display: 'flex', alignItems: 'center', gap: 10, borderBottom: '1px solid var(--border)', flexShrink: 0, justifyContent: sidebarCollapsed ? 'center' : 'flex-start' }}>
         {sidebarCollapsed ? (
           <button
             onClick={toggleSidebar}
@@ -76,9 +76,9 @@ export default function Sidebar() {
       </div>
 
       {/* Nav */}
-      <nav style={{ flex: 1, padding: '12px 10px', display: 'flex', flexDirection: 'column', gap: 2, overflowY: 'auto', overflowX: 'hidden' }}>
+      <nav className="sidebar-nav" style={{ flex: 1, padding: '12px 10px', display: 'flex', flexDirection: 'column', gap: 2, overflowY: 'auto', overflowX: 'hidden' }}>
         {nav.map(({ to, icon: Icon, label, badge }) => (
-          <NavLink key={to} to={to} style={({ isActive }) => ({
+          <NavLink key={to} to={to} className="sidebar-link" style={({ isActive }) => ({
             display: 'flex',
             alignItems: 'center',
             gap: 10,
@@ -103,14 +103,14 @@ export default function Sidebar() {
                 <span style={{ position: 'absolute', top: -4, right: -4, width: 14, height: 14, background: '#EF4444', borderRadius: '50%', fontSize: 8, fontWeight: 700, color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{unread}</span>
               )}
             </div>
-            {!sidebarCollapsed && <span>{label}</span>}
+            {!sidebarCollapsed && <span className="sidebar-link-label">{label}</span>}
           </NavLink>
         ))}
       </nav>
 
       {/* Doctor */}
       {!sidebarCollapsed && (
-        <div style={{ padding: '12px 14px', borderTop: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+        <div className="sidebar-doctor" style={{ padding: '12px 14px', borderTop: '1px solid var(--border)', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
           <div style={{ width: 34, height: 34, borderRadius: '50%', background: 'linear-gradient(135deg, #0EA5E9, #14B8A6)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: 'white', flexShrink: 0 }}>
             {doctor.initials}
           </div>
@@ -129,7 +129,7 @@ export default function Sidebar() {
 
       {/* Toggle - Only show when expanded */}
       {!sidebarCollapsed && (
-        <button onClick={toggleSidebar} style={{
+        <button className="sidebar-toggle" onClick={toggleSidebar} style={{
           position: 'absolute', top: 22, right: -2, width: 24, height: 24,
           background: '#FFFFFF', border: '1px solid var(--border)',
           borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',

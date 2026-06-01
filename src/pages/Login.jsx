@@ -21,9 +21,9 @@ export default function Login() {
   };
 
   return (
-    <div style={{ display: 'flex', height: '100vh', fontFamily: 'var(--font)' }}>
+    <div className="login-shell" style={{ display: 'flex', height: '100vh', fontFamily: 'var(--font)' }}>
       {/* Left Panel */}
-      <div style={{
+      <div className="login-hero" style={{
         flex: 1,
         background: 'linear-gradient(145deg, #0D1B2A 0%, #0F2D4A 50%, #0D1B2A 100%)',
         display: 'flex',
@@ -81,7 +81,7 @@ export default function Login() {
         </div>
 
         {/* Bottom stat cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, position: 'relative', zIndex: 1 }}>
+        <div className="login-stats" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, position: 'relative', zIndex: 1 }}>
           {[
             { n: '1,847', label: 'Active Patients' },
             { n: '14 yrs', label: 'Experience' },
@@ -96,7 +96,7 @@ export default function Login() {
       </div>
 
       {/* Right Panel — Form */}
-      <div style={{ width: 460, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '48px', background: 'white' }}>
+      <div className="login-form-panel" style={{ width: 460, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '48px', background: 'white' }}>
         <div style={{ width: '100%', maxWidth: 360, animation: 'fadeUp 0.4s ease' }}>
           <div style={{ marginBottom: 36 }}>
             <h2 style={{ fontSize: 26, fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.02em', marginBottom: 6 }}>Welcome back</h2>

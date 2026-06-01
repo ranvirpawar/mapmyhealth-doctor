@@ -1,14 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, Area, AreaChart } from 'recharts';
-import { useStore } from '../store/useStore';
+import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
 import { patients, appointments, weeklyStats, notifications } from '../data/mockData';
 import AppLayout from '../layouts/AppLayout';
 import {
   Users, CalendarCheck, AlertTriangle, TrendingUp,
-  Clock, Video, MapPin, ChevronRight, Activity, Zap
+  Video, MapPin, ChevronRight, Activity, Zap
 } from 'lucide-react';
-
-const riskColors = { high: '#EF4444', medium: '#F59E0B', low: '#10B981' };
 
 function StatCard({ icon: Icon, label, value, sub, color, trend }) {
   return (
@@ -60,7 +57,7 @@ export default function Dashboard() {
   return (
     <AppLayout title="Dashboard">
       {/* Greeting */}
-      <div style={{ marginBottom: 24 }}>
+      <div className="page-heading" style={{ marginBottom: 24 }}>
         <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.01em' }}>
           Good morning, Dr. Nair 👋
         </h2>
@@ -70,7 +67,7 @@ export default function Dashboard() {
       </div>
 
       {/* Stat Cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 24 }}>
+      <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 24 }}>
         <StatCard icon={CalendarCheck} label="Today's Appointments" value={todayApts.length} sub="5 in-clinic, 2 video" color="#0EA5E9" trend={12} />
         <StatCard icon={Users} label="Total Patients" value="1,847" sub="Active this month" color="#14B8A6" trend={8} />
         <StatCard icon={AlertTriangle} label="High-Risk Patients" value={highRisk.length} sub="Require attention" color="#EF4444" />
@@ -78,10 +75,10 @@ export default function Dashboard() {
       </div>
 
       {/* Main grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: 20 }}>
+      <div className="dashboard-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: 20 }}>
         {/* Today's Appointments */}
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
+          <div className="section-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
             <h3 style={{ fontSize: 15, fontWeight: 600 }}>Today's Appointments</h3>
             <button className="btn btn-ghost" style={{ padding: '5px 12px', fontSize: 12 }} onClick={() => navigate('/appointments')}>
               View all <ChevronRight size={12} />
@@ -92,7 +89,7 @@ export default function Dashboard() {
             {todayApts.map((apt, i) => {
               const patient = patients.find(p => p.id === apt.patientId);
               return (
-                <div key={apt.id} style={{
+                <div key={apt.id} className="appointment-summary-row animate-fade-up" style={{
                   display: 'flex', alignItems: 'center', gap: 14,
                   padding: '14px 18px',
                   borderBottom: i < todayApts.length - 1 ? '1px solid var(--border)' : 'none',
@@ -100,7 +97,6 @@ export default function Dashboard() {
                   cursor: 'pointer',
                   animationDelay: `${i * 0.05}s`,
                 }}
-                  className="animate-fade-up"
                   onMouseEnter={e => e.currentTarget.style.background = '#F8FAFC'}
                   onMouseLeave={e => e.currentTarget.style.background = 'white'}
                   onClick={() => navigate(`/appointments/${apt.id}`)}
@@ -114,7 +110,7 @@ export default function Dashboard() {
                       {patient?.conditions.slice(0, 2).join(' · ')}
                     </div>
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
+                  <div className="appointment-meta" style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
                     <div style={{ width: 28, height: 28, borderRadius: 6, background: apt.mode === 'Video' ? '#EFF6FF' : '#F0FDF4', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       {apt.mode === 'Video' ? <Video size={13} color="#1D4ED8" /> : <MapPin size={13} color="#16A34A" />}
                     </div>
@@ -167,9 +163,7 @@ export default function Dashboard() {
               <span className="badge badge-high" style={{ marginLeft: 'auto' }}>{alerts.length}</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {notifications.filter(n => n.type === 'alert').slice(0, 3).map(n => {
-                const p = patients.find(pt => pt.id === n.patientId);
-                return (
+              {notifications.filter(n => n.type === 'alert').slice(0, 3).map(n => (
                   <div key={n.id} onClick={() => navigate(`/patients/${n.patientId}`)}
                     style={{ padding: '10px 12px', borderRadius: 10, background: n.read ? '#F8FAFC' : '#FFF1F1', border: `1px solid ${n.read ? 'var(--border)' : '#FECACA'}`, cursor: 'pointer', transition: 'all 0.15s' }}
                     onMouseEnter={e => e.currentTarget.style.transform = 'translateX(2px)'}
@@ -184,8 +178,7 @@ export default function Dashboard() {
                       </div>
                     </div>
                   </div>
-                );
-              })}
+                ))}
             </div>
           </div>
 

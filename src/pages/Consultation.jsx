@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { appointments, patients, consultationHistory, labTests, medicines } from '../data/mockData';
-import { Mic, MicOff, Video, VideoOff, Phone, MessageSquare, Plus, Trash2, FileText, FlaskConical, Clock, Heart, Activity, Droplets, ChevronDown, CheckCircle2, X, User, AlertTriangle, Pill } from 'lucide-react';
+import { Mic, MicOff, Video, VideoOff, Phone, Plus, Trash2, FileText, FlaskConical, Clock, CheckCircle2, User, Pill } from 'lucide-react';
 
 const tabs = [
   { id: 'notes', label: 'Notes', icon: FileText },
@@ -39,10 +39,10 @@ export default function Consultation() {
   const handleEnd = () => { setShowSuccess(true); setTimeout(() => navigate('/dashboard'), 2000); };
 
   return (
-    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg-page)', fontFamily: 'var(--font)', overflow: 'hidden' }}>
+    <div className="consultation-shell" style={{ height: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg-page)', fontFamily: 'var(--font)', overflow: 'hidden' }}>
       {/* Top Bar */}
-      <div style={{ height: 52, background: '#0D1B2A', display: 'flex', alignItems: 'center', padding: '0 20px', gap: 16, flexShrink: 0 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+      <div className="consultation-topbar" style={{ height: 52, background: '#0D1B2A', display: 'flex', alignItems: 'center', padding: '0 20px', gap: 16, flexShrink: 0 }}>
+        <div className="consultation-patient-strip" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div className="avatar" style={{ width: 28, height: 28, background: 'linear-gradient(135deg, #0EA5E9, #14B8A6)', fontSize: 10, color: 'white' }}>{patient.initials}</div>
           <div>
             <span style={{ color: 'white', fontSize: 13, fontWeight: 600 }}>{patient.name}</span>
@@ -53,12 +53,12 @@ export default function Consultation() {
 
         <div style={{ flex: 1 }} />
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+        <div className="consultation-live" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#10B981', animation: 'pulse 2s infinite' }} />
           <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12 }}>Live · {apt.time}</span>
         </div>
 
-        <div style={{ display: 'flex', gap: 6 }}>
+        <div className="consultation-controls" style={{ display: 'flex', gap: 6 }}>
           {[
             { icon: micOn ? Mic : MicOff, active: micOn, toggle: () => setMicOn(!micOn) },
             { icon: videoOn ? Video : VideoOff, active: videoOn, toggle: () => setVideoOn(!videoOn) },
@@ -74,10 +74,10 @@ export default function Consultation() {
       </div>
 
       {/* Body */}
-      <div style={{ flex: 1, display: 'grid', gridTemplateColumns: '260px 1fr 380px', overflow: 'hidden' }}>
+      <div className="consultation-body" style={{ flex: 1, display: 'grid', gridTemplateColumns: '260px 1fr 380px', overflow: 'hidden' }}>
 
         {/* LEFT — Patient Summary */}
-        <div style={{ background: 'white', borderRight: '1px solid var(--border)', overflowY: 'auto', padding: '16px' }}>
+        <div className="consultation-summary" style={{ background: 'white', borderRight: '1px solid var(--border)', overflowY: 'auto', padding: '16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
             <User size={13} color="var(--text-muted)" />
             <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-muted)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Patient Summary</span>
@@ -145,7 +145,7 @@ export default function Consultation() {
         </div>
 
         {/* CENTER — Video + Symptoms */}
-        <div style={{ display: 'flex', flexDirection: 'column', padding: '16px', gap: 14, overflowY: 'auto' }}>
+        <div className="consultation-stage" style={{ display: 'flex', flexDirection: 'column', padding: '16px', gap: 14, overflowY: 'auto' }}>
           {/* Video area */}
           <div style={{ background: '#0D1B2A', borderRadius: 14, overflow: 'hidden', position: 'relative', aspectRatio: '16/9' }}>
             <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -156,7 +156,7 @@ export default function Consultation() {
               </div>
             </div>
             {/* Doctor pip */}
-            <div style={{ position: 'absolute', bottom: 12, right: 12, width: 120, height: 80, background: '#1E3A5F', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid rgba(56,189,248,0.3)' }}>
+            <div className="doctor-pip" style={{ position: 'absolute', bottom: 12, right: 12, width: 120, height: 80, background: '#1E3A5F', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid rgba(56,189,248,0.3)' }}>
               <div style={{ textAlign: 'center' }}>
                 <div className="avatar" style={{ width: 32, height: 32, background: 'linear-gradient(135deg, #7C3AED, #0EA5E9)', fontSize: 11, color: 'white', margin: '0 auto 4px' }}>PN</div>
                 <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: 10 }}>Dr. Nair</div>
@@ -184,7 +184,7 @@ export default function Consultation() {
         </div>
 
         {/* RIGHT — Clinical Workspace */}
-        <div style={{ background: 'white', borderLeft: '1px solid var(--border)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+        <div className="consultation-workspace" style={{ background: 'white', borderLeft: '1px solid var(--border)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
           {/* Tabs */}
           <div style={{ display: 'flex', borderBottom: '1px solid var(--border)', padding: '0 4px', flexShrink: 0 }}>
             {tabs.map(({ id, label, icon: Icon }) => (

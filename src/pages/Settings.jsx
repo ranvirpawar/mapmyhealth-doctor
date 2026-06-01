@@ -5,7 +5,7 @@ export default function Settings() {
   const doctor = useStore(s => s.doctor);
   return (
     <AppLayout title="Settings">
-      <div className="card" style={{ maxWidth: 600, margin: '0 auto', padding: 32 }}>
+      <div className="card settings-card" style={{ maxWidth: 600, margin: '0 auto', padding: 32 }}>
         <h3 style={{ fontSize: 20, fontWeight: 600, marginBottom: 24 }}>Profile Settings</h3>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div>

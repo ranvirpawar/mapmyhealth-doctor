@@ -67,3 +67,386 @@ input, textarea, select, button { font-family: inherit; }
 
 .animate-fade-up { animation: fadeUp 0.3s ease forwards; }
 .animate-fade-in { animation: fadeIn 0.2s ease forwards; }
+
+@media (max-width: 1180px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .dashboard-grid,
+  .consultation-body {
+    grid-template-columns: 1fr !important;
+  }
+
+  .consultation-shell {
+    height: auto !important;
+    min-height: 100vh;
+    overflow: visible !important;
+  }
+
+  .consultation-body {
+    overflow: visible !important;
+  }
+
+  .consultation-summary,
+  .consultation-stage,
+  .consultation-workspace {
+    min-width: 0;
+    max-height: none;
+  }
+
+  .consultation-summary {
+    border-right: none !important;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .consultation-workspace {
+    border-left: none !important;
+    border-top: 1px solid var(--border);
+    min-height: 560px;
+  }
+}
+
+@media (max-width: 900px) {
+  html,
+  body,
+  #root {
+    height: auto;
+    min-height: 100%;
+  }
+
+  body {
+    background: var(--bg-page);
+  }
+
+  .app-shell {
+    display: block !important;
+    height: auto !important;
+    min-height: 100vh;
+    overflow: visible !important;
+    padding-bottom: 76px;
+  }
+
+  .app-main {
+    min-width: 0;
+    overflow: visible !important;
+  }
+
+  .app-content {
+    overflow: visible !important;
+    padding: 18px !important;
+  }
+
+  .sidebar {
+    position: fixed !important;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    top: auto;
+    width: auto !important;
+    min-width: 0 !important;
+    height: 58px !important;
+    z-index: 50;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 12px 36px rgba(15,23,42,0.16);
+  }
+
+  .sidebar-brand,
+  .sidebar-doctor,
+  .sidebar-toggle {
+    display: none !important;
+  }
+
+  .sidebar-nav {
+    flex: 1 !important;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: space-around;
+    gap: 2px !important;
+    padding: 7px !important;
+    overflow: hidden !important;
+  }
+
+  .sidebar-link {
+    flex: 1 1 0;
+    height: 44px;
+    min-width: 0;
+    justify-content: center !important;
+    padding: 8px 6px !important;
+    border-radius: 12px !important;
+  }
+
+  .sidebar-link-label {
+    display: none;
+  }
+
+  .app-header {
+    height: auto !important;
+    min-height: 58px;
+    padding: 12px 18px !important;
+    gap: 12px;
+    align-items: center !important;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+
+  .app-header-title h1 {
+    font-size: 17px !important;
+    line-height: 1.25;
+  }
+
+  .app-header-actions {
+    gap: 10px !important;
+  }
+
+  .header-search {
+    display: none;
+  }
+
+  .header-doctor {
+    border-left: none !important;
+    padding-left: 0 !important;
+  }
+
+  .header-doctor > div:last-child {
+    display: none;
+  }
+
+  .page-heading h2,
+  .page-toolbar h2 {
+    font-size: 20px !important;
+    line-height: 1.2;
+  }
+
+  .page-toolbar {
+    align-items: flex-start !important;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .page-toolbar .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .stats-grid,
+  .patients-grid,
+  .chart-grid,
+  .two-column-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .filters-bar {
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 12px !important;
+    padding: 14px !important;
+  }
+
+  .filters-bar > div[style*="flex: 1"] {
+    display: none;
+  }
+
+  .filter-search {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .segmented-control {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .segmented-control button {
+    flex: 1 0 auto;
+  }
+
+  .responsive-list-card {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    overflow: visible !important;
+  }
+
+  .table-header {
+    display: none !important;
+  }
+
+  .appointment-list-row,
+  .appointment-summary-row {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 10px !important;
+    align-items: flex-start !important;
+    padding: 14px !important;
+    margin-bottom: 12px;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-md);
+    background: white;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .appointment-list-row > *,
+  .appointment-summary-row > * {
+    min-width: 0;
+  }
+
+  .appointment-list-row > :first-child {
+    flex: 1 1 100%;
+  }
+
+  .appointment-summary-row > :first-child {
+    flex: 0 0 auto;
+  }
+
+  .appointment-summary-row > :nth-child(2) {
+    flex: 1 1 calc(100% - 54px);
+  }
+
+  .appointment-meta,
+  .row-actions {
+    flex: 1 1 auto;
+  }
+
+  .row-actions {
+    justify-content: flex-end;
+  }
+
+  .section-header {
+    gap: 10px;
+    align-items: flex-start !important;
+  }
+
+  .section-header .btn {
+    padding-inline: 10px !important;
+  }
+
+  .patient-card {
+    padding: 16px !important;
+  }
+
+  .details-container {
+    max-width: none !important;
+  }
+
+  .prescription-row {
+    align-items: flex-start !important;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .settings-card {
+    padding: 22px !important;
+  }
+
+  .login-shell {
+    height: auto !important;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  .login-hero {
+    min-height: auto;
+    padding: 28px 22px !important;
+  }
+
+  .login-hero h2 {
+    font-size: 30px !important;
+  }
+
+  .login-stats {
+    grid-template-columns: 1fr !important;
+    margin-top: 26px;
+  }
+
+  .login-form-panel {
+    width: 100% !important;
+    padding: 30px 22px 36px !important;
+  }
+
+  .consultation-topbar {
+    height: auto !important;
+    min-height: 58px;
+    padding: 10px 12px !important;
+    flex-wrap: wrap;
+    gap: 10px !important;
+  }
+
+  .consultation-patient-strip {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  .consultation-patient-strip .badge {
+    margin-left: auto;
+  }
+
+  .consultation-live {
+    order: 2;
+  }
+
+  .consultation-controls {
+    order: 3;
+    margin-left: auto;
+  }
+
+  .doctor-pip {
+    width: 86px !important;
+    height: 58px !important;
+    bottom: 8px !important;
+    right: 8px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .app-content {
+    padding: 14px !important;
+  }
+
+  .card {
+    border-radius: var(--radius-md);
+  }
+
+  .btn {
+    min-height: 36px;
+  }
+
+  .stats-grid {
+    gap: 12px !important;
+  }
+
+  .appointment-list-row,
+  .appointment-summary-row {
+    border-radius: 14px;
+  }
+
+  .appointment-summary-row .btn-primary,
+  .row-actions .btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  .chart-grid .card {
+    padding: 16px !important;
+  }
+
+  .login-hero h2 {
+    font-size: 26px !important;
+  }
+
+  .login-hero p {
+    font-size: 14px !important;
+  }
+
+  .consultation-stage {
+    padding: 12px !important;
+  }
+
+  .consultation-workspace > div:last-child {
+    padding: 12px !important;
+  }
+}

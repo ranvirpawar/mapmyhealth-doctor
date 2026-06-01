@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { patients } from '../data/mockData';
 import AppLayout from '../layouts/AppLayout';
-import { Search, Filter, Activity, ChevronRight, Heart, Droplets } from 'lucide-react';
+import { Search, Activity, ChevronRight } from 'lucide-react';
 
 const riskFilters = ['All', 'High', 'Medium', 'Low'];
 
@@ -20,7 +20,7 @@ export default function Patients() {
 
   return (
     <AppLayout title="Patients">
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
+      <div className="page-toolbar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
         <div>
           <h2 style={{ fontSize: 20, fontWeight: 700 }}>Patient Registry</h2>
           <p style={{ fontSize: 13, color: 'var(--text-muted)' }}>{patients.length} total patients</p>
@@ -28,12 +28,12 @@ export default function Patients() {
       </div>
 
       {/* Filters */}
-      <div className="card" style={{ padding: '14px 18px', marginBottom: 16, display: 'flex', gap: 16, alignItems: 'center' }}>
-        <div style={{ position: 'relative', flex: 1, maxWidth: 320 }}>
+      <div className="card filters-bar" style={{ padding: '14px 18px', marginBottom: 16, display: 'flex', gap: 16, alignItems: 'center' }}>
+        <div className="filter-search" style={{ position: 'relative', flex: 1, maxWidth: 320 }}>
           <Search size={13} style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
           <input className="input-field" style={{ paddingLeft: 30, height: 36, fontSize: 13 }} placeholder="Search by name or condition..." value={search} onChange={e => setSearch(e.target.value)} />
         </div>
-        <div style={{ display: 'flex', gap: 4 }}>
+        <div className="segmented-control" style={{ display: 'flex', gap: 4 }}>
           {riskFilters.map(f => (
             <button key={f} onClick={() => setRiskFilter(f)} style={{
               padding: '6px 14px', borderRadius: 8, fontSize: 12, fontWeight: riskFilter === f ? 600 : 400,
@@ -47,9 +47,9 @@ export default function Patients() {
       </div>
 
       {/* Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 16 }}>
+      <div className="patients-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 16 }}>
         {filtered.map((p, i) => (
-          <div key={p.id} className="card animate-fade-up" style={{ padding: '20px', cursor: 'pointer', transition: 'all 0.15s', animationDelay: `${i * 0.04}s` }}
+          <div key={p.id} className="card patient-card animate-fade-up" style={{ padding: '20px', cursor: 'pointer', transition: 'all 0.15s', animationDelay: `${i * 0.04}s` }}
             onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = 'var(--shadow-md)'; }}
             onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'var(--shadow-sm)'; }}
             onClick={() => navigate(`/patients/${p.id}`)}

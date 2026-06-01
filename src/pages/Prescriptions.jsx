@@ -1,5 +1,5 @@
 import AppLayout from '../layouts/AppLayout';
-import { FileText, Download } from 'lucide-react';
+import { Download } from 'lucide-react';
 
 export default function Prescriptions() {
   // Mock data: prescriptions would normally be taken from consultation store
@@ -13,7 +13,7 @@ export default function Prescriptions() {
       <div className="card" style={{ padding: 20 }}>
         <h2 style={{ fontSize: 20, fontWeight: 600, marginBottom: 16 }}>Recent Prescriptions</h2>
         {prescriptions.map(p => (
-          <div key={p.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 12, borderBottom: '1px solid var(--border)' }}>
+          <div key={p.id} className="prescription-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 12, borderBottom: '1px solid var(--border)' }}>
             <div>
               <div style={{ fontWeight: 600 }}>{p.patient}</div>
               <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>{p.date} · {p.medicines.join(', ')}</div>

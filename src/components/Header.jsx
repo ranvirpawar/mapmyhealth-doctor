@@ -1,4 +1,4 @@
-import { Bell, Search, User } from 'lucide-react';
+import { Bell, Search } from 'lucide-react';
 import { useStore } from '../store/useStore';
 
 export default function Header({ title }) {
@@ -6,7 +6,7 @@ export default function Header({ title }) {
   const unreadCount = useStore(s => s.unreadCount());
 
   return (
-    <header style={{
+    <header className="app-header" style={{
       height: 60,
       padding: '0 24px',
       background: 'white',
@@ -16,13 +16,13 @@ export default function Header({ title }) {
       justifyContent: 'space-between',
       flexShrink: 0,
     }}>
-      <div>
+      <div className="app-header-title">
         <h1 style={{ fontSize: 18, fontWeight: 600, color: 'var(--text-primary)' }}>{title}</h1>
       </div>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+      <div className="app-header-actions" style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
         {/* Search - placeholder */}
-        <div style={{ position: 'relative', width: 240 }}>
+        <div className="header-search" style={{ position: 'relative', width: 240 }}>
           <Search size={14} style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
           <input
             type="text"
@@ -45,7 +45,7 @@ export default function Header({ title }) {
         </button>
 
         {/* Doctor avatar */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingLeft: 8, borderLeft: '1px solid var(--border)' }}>
+        <div className="header-doctor" style={{ display: 'flex', alignItems: 'center', gap: 8, paddingLeft: 8, borderLeft: '1px solid var(--border)' }}>
           <div className="avatar" style={{ width: 32, height: 32, background: 'linear-gradient(135deg, #0EA5E9, #14B8A6)', fontSize: 12, color: 'white' }}>
             {doctor.initials}
           </div>
